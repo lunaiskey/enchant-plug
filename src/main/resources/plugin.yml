@@ -1,0 +1,4 @@
+name: Enchant_Plug
+version: ${project.version}
+main: me.lunaiskey.enchantplug.EnchantPlug
+api-version: 1.16
