@@ -1,4 +1,9 @@
-name: Enchant_Plug
+name: LunaEnchantPlug
 version: ${project.version}
 main: me.lunaiskey.enchantplug.EnchantPlug
 api-version: 1.16
+commands:
+  anvil:
+    usage: /<command>
+    description: Undefined Desscription.
+    permission: enchantplug.anvil
