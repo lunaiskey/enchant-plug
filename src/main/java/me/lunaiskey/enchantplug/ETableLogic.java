@@ -51,13 +51,12 @@ public class ETableLogic implements Listener {
             }
 
             if (e.getSlot() == 19 && inv.getLocation() == null && e.getView().getTitle().equalsIgnoreCase(etable.getMenuDisplayName())) {
+                p.sendMessage(e.getAction().toString());
                 if (e.getAction() == InventoryAction.PICKUP_ALL || e.getAction() == InventoryAction.PLACE_ALL || e.getAction() == InventoryAction.SWAP_WITH_CURSOR) {
                     if (e.getAction() == InventoryAction.PLACE_ALL || e.getAction() == InventoryAction.SWAP_WITH_CURSOR) {
                         new BukkitRunnable() {
                             @Override
                             public void run() {
-                                //p.sendMessage(e.getInventory().getItem(19).toString());
-
                                 for (int i = 0;i < 15;i++) {
                               //for (int i = 0;i < getEnchants(e.getInventory().getItem(19).getType()).length;i++) {
                                     if (i < getEnchants(e.getInventory().getItem(19).getType()).length) {
