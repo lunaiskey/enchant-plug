@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import me.lunaiskey.enchantplug.core.Methods;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Anvil implements CommandExecutor {

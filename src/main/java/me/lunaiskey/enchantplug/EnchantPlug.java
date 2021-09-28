@@ -1,10 +1,7 @@
 package me.lunaiskey.enchantplug;
 
-import org.bukkit.Material;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.EnumSet;
 
 public final class EnchantPlug extends JavaPlugin {
 

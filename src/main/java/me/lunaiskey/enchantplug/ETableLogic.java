@@ -15,9 +15,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ETableLogic implements Listener {
     EnchantTable etable = new EnchantTable();
 
@@ -68,23 +65,26 @@ public class ETableLogic implements Listener {
                                         ItemMeta emeta = ebook.getItemMeta();
                                         Enchantment enchant = getEnchants(e.getInventory().getItem(19).getType())[i];
                                         emeta.setDisplayName(ChatColor.GREEN + getEnchantFormatted(enchant));
-                                        //List<String> lore = new ArrayList<String>();
-                                        //lore.add(enchant.getKey().getKey());
-                                        //emeta.setLore(lore);
                                         ebook.setItemMeta(emeta);
-                                        e.getInventory().setItem(getSlotID(i), ebook);
+                                        e.getInventory().setItem(etable.getSlotID(i), ebook);
                                     } else if (getEnchants(e.getInventory().getItem(19).getType()).length == 0){
-                                        e.getInventory().setItem(getSlotID(i),etable.createItem(Material.IRON_BARS,ChatColor.RED + "Invalid Item"));
+                                        if (i == 7) {
+                                            e.getInventory().setItem(etable.getSlotID(i),etable.createItem(Material.RED_DYE,ChatColor.RED + "Cannot Enchant Item!"));
+                                        } else {
+                                            e.getInventory().setItem(etable.getSlotID(i),etable.createItem(Material.BLACK_STAINED_GLASS_PANE," "));
+                                        }
                                     } else if (i >= getEnchants(e.getInventory().getItem(19).getType()).length){
-                                        e.getInventory().setItem(getSlotID(i),etable.createItem(Material.WHITE_STAINED_GLASS_PANE," "));
+                                        e.getInventory().setItem(etable.getSlotID(i),etable.createItem(Material.BLACK_STAINED_GLASS_PANE," "));
                                     }
                                 }
                             }
                         }.runTaskLater(EnchantPlug.getInstance(),1);
                     } else { //PICKUP_ALL
-                        for (int i = 0; i < 54; i++) {
-                            if ((i >= 12 && i <= 16) || (i >= 21 && i <= 25) || (i >= 30 && i <= 34)) {
-                                inv.setItem(i, etable.getEnchantPlaceholder());
+                        for (int i = 0; i < 15; i++) {
+                            if (i == 7) {
+                                inv.setItem(etable.getSlotID(i), etable.getEnchantPlaceholder());
+                            } else {
+                                inv.setItem(etable.getSlotID(i), etable.createItem(Material.BLACK_STAINED_GLASS_PANE, " "));
                             }
                         }
                     }
@@ -214,22 +214,6 @@ public class ETableLogic implements Listener {
             };
         }
         return new Enchantment[]{};
-    }
-
-    private int getSlotID(Integer slot) throws IndexOutOfBoundsException{
-        if (slot >= 0 && slot <= 4) {
-            return slot + 12;
-        }
-        if (slot >= 5 && slot <= 9) {
-            return slot + 16;
-        }
-        if (slot >= 10 && slot <= 14) {
-            return slot + 20;
-        }
-        if (slot >= 15) {
-            throw new IndexOutOfBoundsException("Higher the 15");
-        }
-        return -1;
     }
     private String getEnchantFormatted(Enchantment enchant) {
         String ench = enchant.getKey().getKey();
